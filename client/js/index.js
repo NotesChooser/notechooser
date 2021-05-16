@@ -8,9 +8,10 @@ const testMeasurePos = new p5.Vector(80,400);
 
 function setup() {//runs once at beginning of the program
     createCanvas(1280, 720);
-    testMeasure = new Measure("fClef", testMeasureSize, testMeasurePos);  
+    testMeasure = new Measure(testMeasureSize, testMeasurePos);  
     testTimeSig = new Timesignature(4, 4, testMeasure);
     testNote = new Note("C","",0, testMeasure);
+    testClef = new Clef("gClef",testMeasure);
 }
 
 function draw() { //P5.js's draw runs 60 times per second

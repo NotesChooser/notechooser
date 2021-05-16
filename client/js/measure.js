@@ -1,10 +1,7 @@
-class Measure { //class for Measure object
-    constructor(_clef, _pixelSize, _pixelPos) { //constructs a measure based on clef, pixel size, and pixel position input, all other sub elements of the measure are attached as children
 
-        if(!(_clef == "gClef" || _clef == "fClef")) {  //validity check for clef input
-            throw `Unexpected clef: ${_clef} is not a supported clef`;
-        }
-        this.clef = _clef;
+class Measure { 
+    // Represents a measure. Has a position and a size, and can have children note, timesignature, and clef. 
+    constructor( _pixelSize, _pixelPos, _children = null) { //constructs a measure based on clef, pixel size, and pixel position input, all other sub elements of the measure are attached as children
 
         if(!(typeof(_pixelSize) == "number")) { //typecheck for size input
             throw new TypeError(`Unexpected value for pixel size: ${_pixelSize} is ${typeof(_pixelSize)}, expected number`);
@@ -14,15 +11,21 @@ class Measure { //class for Measure object
         if(!(_pixelPos instanceof p5.Vector)) { //typecheck for position input
             throw new TypeError (`Unexpected value for pixel position: ${_pixelPos} is not a p5.vector, expected p5.Vector`);
         }
-        this.pixelPos = _pixelPos;    
+        this.pixelPos = _pixelPos;
+
+        // add children
+        this.children = {}
+        for(_child in _children) {
+            this.addChild(_child);
+        }  
     }
     show(SMuFLdictionary, musFont) { //draws the measure to the screen based on the arguments
         textFont(musFont);
         textSize(this.pixelSize);
         fill(0,0,0);
-        const encodedText = encode(`(staff5LinesWide)(barlineSingle)(staff5LinesNarrow)(${this.clef})${this.timeSignature.smufl_point(SMuFLdictionary)}(staff5LinesWide)      (staff5LinesWide)      (staff5LinesWide)      (staff5LinesWide)      (staff5LinesWide)     (barlineHeavy)`, SMuFLdictionary)
+        const encodedText = encode(`(staff5LinesWide)(barlineSingle)(staff5LinesNarrow)${this.children.clef.smufl_point(SMuFLdictionary)}${this.children.timesignature.smufl_point(SMuFLdictionary)}(staff5LinesWide)      (staff5LinesWide)      (staff5LinesWide)      (staff5LinesWide)      (staff5LinesWide)     (barlineHeavy)`, SMuFLdictionary)
         text(encodedText, this.pixelPos.x, this.pixelPos.y);
-        this.note.show(SMuFLdictionary, musFont);
+        this.children.note.show(SMuFLdictionary, musFont);
     }
 
     randomizeNote(min_pos,max_pos){
@@ -35,12 +38,16 @@ class Measure { //class for Measure object
 
     addChild(_child) { //attaches a child
         if(_child instanceof Note) {
-            this.note = _child
+            this.children.note = _child;
 
-        } else if(_child instanceof Timesignature){
-            this.timeSignature = _child
+        } else if (_child instanceof Timesignature) {
+            this.children.timesignature = _child;
+
+        } else if (_child instanceof Clef) {
+            this.children.clef = _child;
+
         } else {
-            throw new TypeError (`Unexpected child: ${_child} is not a Note or Timesignature object.`)
+            throw new TypeError (`Unexpected child: ${_child} cannot be childed to Measure: it is not a Note, Timesignature, or Clef`);
         }
             
     }
