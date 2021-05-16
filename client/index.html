@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Note Chooser Maximus PRO+++</title>
+  <title>Note Chooser +++!</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
-  <link rel="icon" href="img/favicon.png"> 
+  <link rel="icon" href="assets/favicon.png"> 
   <script src="assets/p5.js"></script>
+  <link rel="stylesheet" href="/epicstyle.css">
+
 </head>
+<div class="flip-box">
+  <div class="flip-box-inner">
+    <div class="flip-box-front">
+      <h2>Hello! Click this</h2>
+    </div>
+    <div class="flip-box-back">
+      <h2>You got TROLLED</h2>
+    </div>
+  </div>
+</div>
 <body>
-  <h1>Notes</h1>
+  <h1 class = "title">Note Chooser +++!</h1>
   <script src="js/util.js"></script>
   <script src="js/loadAssets.js"></script>
   <script src="js/encode.js"></script>
@@ -18,9 +30,11 @@
   <script src="js/note.js"></script>
   <script src="js/measure.js"></script>
   <script src="js/index.js"></script>
-  <button id = "fClefButton">Bass Clef</button>
-  <button id = "gClefButton">Treble Clef</button>
-  <button id = "randomButton">random</button>
+  <div class="buttons">
+    <button class="button" id="fClefButton">Bass Clef</button>
+    <button class="button" id="gClefButton">Treble Clef</button>
+    <button class="button" id="randomButton">random</button>
+  </div>
 
   <script src="js/buttons.js"></script>
 </body> 

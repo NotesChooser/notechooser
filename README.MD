@@ -1,4 +1,4 @@
-# Note Chooser Maximus PRO+++
+# Note Chooser +++!
 Note Chooser Maximus PRO+++ is an in-development multi-purpose app for Music Education. 
 
 ## Installation Guide

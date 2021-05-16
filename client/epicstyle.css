@@ -1,0 +1,109 @@
+@font-face{
+    font-family: "Drama Sans";
+    src: url("./assets/DramaSans.ttf");
+
+}
+
+@keyframes bruh {
+   from {background-size: 80px;}
+   to {background-size: 90px;}
+}
+@keyframes fidget {
+    from {
+        transform-style: preserve-3d;
+        transform: rotateY(0deg);
+        transform-style: preserve-3d;
+    }
+    to {
+        transform-style: preserve-3d;
+        transform: rotateY(360deg);
+        transform-style: preserve-3d;
+    }
+}
+html{
+    background-size:80px;
+    perspective: 100px;
+    transform-style: preserve-3d;
+    animation-name: bruh;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F78.media.tumblr.com%2F1804922514d5b457405cf43986201465%2Ftumblr_ohzetvvL0u1qhrm3lo1_500.gif&f=1&nofb=1");
+    background-repeat: repeat;
+    background-position: center;
+
+    
+    cursor: url(https://ani.cursors-4u.net/games/gam-16/gam1564.cur), auto !important;
+}
+body {
+    color: white;
+    font-family: "Drama Sans";
+}
+
+.button {
+    font-family: "Drama Sans";
+    font-size: 14pt;
+    color: black; 
+    background-color: rgb(214, 214, 214); 
+    animation-name: fidget;
+    animation-duration: 10s;
+    perspective: 1000px;
+    animation-iteration-count: infinite;
+    width: 300px;
+    height: 40px;
+    border: 1px solid;
+}
+head {
+    color: #00ff00;
+}
+/* The flip box container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-box {
+    background-color: transparent;
+    background-image:url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F78.media.tumblr.com%2F1804922514d5b457405cf43986201465%2Ftumblr_ohzetvvL0u1qhrm3lo1_500.gif&f=1&nofb=1");
+    width: 300px;
+    height: 200px;
+    border: 1px solid #f1f1f1;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  }
+  
+  /* This container is needed to position the front and back side */
+  .flip-box-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 2s;
+    transform-style: preserve-3d;
+  }
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flip-box:hover .flip-box-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Position the front and back side */
+  .flip-box-front, .flip-box-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  }
+  
+  /* Style the front side */
+  .flip-box-front {
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F78.media.tumblr.com%2F1804922514d5b457405cf43986201465%2Ftumblr_ohzetvvL0u1qhrm3lo1_500.gif&f=1&nofb=1");
+    background-color: #bbb;
+    background-repeat: repeat;
+    background-size: 20px;
+    color: black;
+  }
+  
+  /* Style the back side */
+  .flip-box-back {
+    background-color: dodgerblue;
+    background-repeat: repeat;
+    background-size: 200px;
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fimages%2F37a7adee5bca77ad3bf87aeeff5c6a1f%2Ftenor.gif%3Fitemid%3D4929853&f=1&nofb=1");
+    color: black;
+    transform: rotateY(180deg);
+  }
