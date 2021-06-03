@@ -9,10 +9,12 @@ class Clef {
 
         this.addParent(_parent);     
     }
+
     smufl_point(smufl_dict) { //gets smufl_point by passing a formatted smufl_name to encode()
         this.smufl_name = `(${this.name})`;
         return encode(this.smufl_name,smufl_dict);
     }
+    
     addParent(parent){ 
         if(parent){ // checks if parent is null
             if(!(parent instanceof Measure)) { //checks parent validity
