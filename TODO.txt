@@ -1,0 +1,15 @@
+//// TODO:
+
+    1: get multiple leger lines working
+    2: get buttons working
+        a: add them iteratively
+        b: add keyboard support
+    3: ui cleanup
+        a: make the canvas fill the screen
+        b: flexbox the buttons nicely at the bottom
+    4: add a score system
+        a: count how many the user got right
+        b: modify that # by how long it took them
+    5: create a user class to store scores
+    6: add a game class and level subclass to store game elements like the current Measure
+    
