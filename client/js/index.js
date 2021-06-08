@@ -7,7 +7,8 @@ const testMeasureSize = 200;
 const testMeasurePos = new p5.Vector(80,400);
 
 function setup() {//runs once at beginning of the program
-    createCanvas(1280, 720);
+    canvas = createCanvas(1280, 720);
+    canvas.parent("canvas");
     testMeasure = new Measure(testMeasureSize, testMeasurePos);  
     testTimeSig = new Timesignature(4, 4, testMeasure);
     testNote = new Note("C","",0, testMeasure);

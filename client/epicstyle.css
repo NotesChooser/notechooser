@@ -1,0 +1,42 @@
+h1.title {
+    display: flex;
+    justify-content: center;
+
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+#button-container {
+    width: 1280px;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.button {
+    flex: auto;
+    background-color: #e5e5e5;
+    text-align: center;
+    margin-right: 10px;
+    margin-left: 0px;
+    user-select: none;
+    padding: 0.25em;
+}
+
+.button:last-child {
+    margin-right: 0px;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+#canvas {
+    display: flex;
+    justify-content: center;
+
+}
