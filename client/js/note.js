@@ -70,7 +70,7 @@ class Note {
         */
         
 
-        this.color = {r: random(255), g: random(255), b: random(255)};
+        this.color = {r: random(200), g: random(200), b: random(200)};
         //set up number, parent, and position
         this.has_parent = false;
         this.getNumber();
