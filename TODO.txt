@@ -9,7 +9,13 @@
         b: flexbox the buttons nicely at the bottom
     4: add a score system
         a: count how many the user got right
-        b: modify that # by how long it took them
-    5: create a user class to store scores
-    6: add a game class and level subclass to store game elements like the current Measure
+        b: add a timer to see how long their guess took
+    5: add a game class and level subclass to store game elements
+    6: add account system (AVOID USING EMAIL BECAUSE CRINGE, ALSO MAKE ACCT OPTIONAL)
+        a: make /main page
+        b: move game to /game or /play or smth
+        c: write a user class to represent a user (stores information like username, password, scores, teachers, etc) 
+        d: add login/create account pages 
+        e: make a database of users for user persistence and store all information securely
+    
     
