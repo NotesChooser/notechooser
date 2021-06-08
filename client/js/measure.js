@@ -1,8 +1,10 @@
 
 class Measure { 
-    // Represents a measure. Has a position and a size, and can have children note, timesignature, and clef. 
+    /* Represents a measure. Has a position and a size and is parent to a clef, timesignature, and note. */
+
     constructor( _pixelSize, _pixelPos, _children = null) { //constructs a measure based on clef, pixel size, and pixel position input, all other sub elements of the measure are attached as children
 
+        //// TODO: Replace with asserts
         if(!(typeof(_pixelSize) == "number")) { //typecheck for size input
             throw new TypeError(`Unexpected value for pixel size: ${_pixelSize} is ${typeof(_pixelSize)}, expected number`);
         }
@@ -19,13 +21,19 @@ class Measure {
             this.addChild(_child);
         }  
     }
-    show(SMuFLdictionary, musFont) { //draws the measure to the screen based on the arguments
-        textFont(musFont);
+
+    show(smufl_dict, bravura) {
+        //set up font, font size, and font color
+        textFont(bravura);
         textSize(this.pixelSize);
         fill(0,0,0);
-        const encodedText = encode(`(staff5LinesWide)(barlineSingle)(staff5LinesNarrow)${this.children.clef.smufl_point(SMuFLdictionary)}${this.children.timesignature.smufl_point(SMuFLdictionary)}(staff5LinesWide)      (staff5LinesWide)      (staff5LinesWide)      (staff5LinesWide)      (staff5LinesWide)     (barlineHeavy)`, SMuFLdictionary)
-        text(encodedText, this.pixelPos.x, this.pixelPos.y);
-        this.children.note.show(SMuFLdictionary, musFont);
+
+        //get smufl_points for staff lines, barlines, clef, and timesignature
+        const smufl_text = encode(`(staff5LinesWide)(barlineSingle)(staff5LinesNarrow)${this.children.clef.smufl_point(smufl_dict)}${this.children.timesignature.smufl_point(smufl_dict)}(staff5LinesWide)      (staff5LinesWide)      (staff5LinesWide)      (staff5LinesWide)      (staff5LinesWide)     (barlineHeavy)`, smufl_dict)
+        
+        // draw measure using smufl_text
+        text(smufl_text, this.pixelPos.x, this.pixelPos.y);
+        this.children.note.show(smufl_dict, bravura);
     }
 
     randomizeNote(min_pos,max_pos){

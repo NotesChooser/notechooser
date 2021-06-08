@@ -1,9 +1,11 @@
 class Clef {
     //Represents a musical Clef and works with smufl. Can be childed to a Measure. 
-    constructor(_name, _parent = null) { 
+    constructor(_name, _parent = null) {
+        
+        //// TODO: Replace with asserts
         //typechecking of inputs
         if (typeof _name != "string") {
-            throw new TypeError(`Unexpected clef name: '${_name}' is of type '${typeof _num}', expected 'string'.`);
+            throw new TypeError(`Unexpected clef name: '${_name}' is of type '${typeof _name}', expected 'string'.`);
         }
         this.name = _name;
 
@@ -15,16 +17,15 @@ class Clef {
         return encode(this.smufl_name,smufl_dict);
     }
     
-    addParent(parent){ 
-        if(parent){ // checks if parent is null
-            if(!(parent instanceof Measure)) { //checks parent validity
-                throw new TypeError (`Unexpected parent: ${parent} is not a Measure object.`)
-            }
+    addParent(parent){
+        //parent this to a measure 
+        if(parent){ // nullcheck
+            console.assert(parent instanceof Measure, {parent, msg:`Parent must be a Measure.`}); // typecheck
             this.parent = parent;
             this.parent.addChild(this);
-            return true;
+            return true; // return true if a parent was added
         } else {
-            return false;
+            return false; // return false if a parent wasn't added
         }
     }
 
