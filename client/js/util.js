@@ -1,5 +1,5 @@
 function randint(min, max) {  //gets a random integer from a min and max
-    return Math.floor(Math.random() * (max - min) + min);
+    return Math.floor(Math.random() * (max + 1 - min) + min);
 }
 
 function expect(val, valid_vals = null, valid_type = null, valid_class = null) {

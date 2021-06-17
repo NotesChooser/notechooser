@@ -2,7 +2,7 @@
 // event listener for randomize button
 let exampleButton = document.getElementById("randomButton");
 exampleButton.addEventListener("click", () => {
-    testMeasure.randomizeNote(-6, 7);
+    testMeasure.randomizeNote(-6, 6);
 });
 
 //event listener for treble clef button, when clicked sets clef to treble clef
@@ -34,7 +34,7 @@ function button_handler(button_name) {
         evaluation = `bruh! ${testMeasure.children.note.name}`;
     }
 
-    testMeasure.randomizeNote(-6, 7);
+    testMeasure.randomizeNote(-6, 6);
 }
 
 function addButtons(button_names) {
