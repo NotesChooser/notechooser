@@ -16,7 +16,7 @@
 */
 
 let bravura;
-let smufl_dict; 
+let smufl_dict;
 
 function preload() { //p5 runs this before loading, awaits all asynchronous returns implicitly
     console.log("loading assets...")
@@ -25,4 +25,4 @@ function preload() { //p5 runs this before loading, awaits all asynchronous retu
     console.log("loading /assets/glyphnames.json...");
     smufl_dict = loadJSON("/assets/glyphnames.json");
     console.log("loading complete!")
-} 
+}
