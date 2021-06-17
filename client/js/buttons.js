@@ -1,15 +1,15 @@
 
 // event listener for randomize button
-let exampleButton = document.getElementById("randomButton"); 
+let exampleButton = document.getElementById("randomButton");
 exampleButton.addEventListener("click", () => {
-  testMeasure.randomizeNote(-6,7);
+    testMeasure.randomizeNote(-6, 7);
 });
 
 //event listener for treble clef button, when clicked sets clef to treble clef
 let gClefButton = document.getElementById("gClefButton");
-gClefButton.addEventListener("click", () => { 
+gClefButton.addEventListener("click", () => {
     testMeasure.children.timesignature = new Timesignature(4, 4, testMeasure);
-    testMeasure.children.note = new Note("C","",0, testMeasure);
+    testMeasure.children.note = new Note("C", "", 0, testMeasure);
     testMeasure.children.clef = new Clef("gClef", testMeasure);
 
 });
@@ -18,26 +18,23 @@ gClefButton.addEventListener("click", () => {
 let fClefButton = document.getElementById("fClefButton");
 fClefButton.addEventListener("click", () => {
     testMeasure.children.timesignature = new Timesignature(4, 4, testMeasure);
-    testMeasure.children.note = new Note("C","",0, testMeasure);
+    testMeasure.children.note = new Note("C", "", 0, testMeasure);
     testMeasure.children.clef = new Clef("fClef", testMeasure);
-    
+
 });
 
 
-
-function updateScreen(evaluator){ //takes in evaluator and sets the evaluation text on the screen to that evaluator argument
-    evaluation = evaluator
-}
-
-function button_handler(button_name){
+function button_handler(button_name) {
     console.log(button_name);
     if (testMeasure.children.note.name == button_name) {
         console.log("yo!");
+        evaluation = "yo!";
     } else {
         console.log(`bruh! ${testMeasure.children.note.name}`);
+        evaluation = `bruh! ${testMeasure.children.note.name}`;
     }
 
-    testMeasure.randomizeNote(-6,7);
+    testMeasure.randomizeNote(-6, 7);
 }
 
 function addButtons(button_names) {
@@ -60,5 +57,11 @@ function addButtons(button_names) {
 
 addButtons(Note.valid_names);
 
+window.addEventListener("keydown", (keyEvent) => { // get keyboard input for note name guesses
+    guess = keyEvent.key.toUpperCase();
+    if (Note.valid_names.includes(guess)) { //discard irrelevant key events (i.e. the 'O' key)
+        button_handler(keyEvent.key.toUpperCase());
+    }
+});
 
 
