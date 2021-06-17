@@ -1,10 +1,10 @@
 //// TODO:
 
     1: get multiple leger lines working
-    2: get buttons working
+X   2: get buttons working
         a: add them iteratively
         b: add keyboard support
-    3: ui cleanup
+X   3: ui cleanup
         a: make the canvas fill the screen
         b: flexbox the buttons nicely at the bottom
     4: add a score system
