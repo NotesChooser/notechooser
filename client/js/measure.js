@@ -36,12 +36,12 @@ class Measure {
         this.children.note.show(smufl_dict, bravura);
     }
 
-    randomizeNote(min_pos,max_pos){
+    randomizeNote(min_pos, max_pos){
         let clef_offset = 15;
-        if (this.clef == "gClef") { clef_offset = 27 };
+        if (this.children.clef.name == "gClef") { clef_offset = 27 };
         const min_note = (min_pos + clef_offset) * 5;
         const max_note = (max_pos + clef_offset) * 5;
-        this.note = Note.getNote(randint(min_note,max_note),this);
+        this.children.note = Note.getNote(randint(min_note,max_note),this);
     }
 
     addChild(_child) { //attaches a child

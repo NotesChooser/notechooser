@@ -11,8 +11,8 @@ function setup() {//runs once at beginning of the program
     canvas.parent("canvas");
     testMeasure = new Measure(testMeasureSize, testMeasurePos);  
     testTimeSig = new Timesignature(4, 4, testMeasure);
-    testNote = new Note("C","",0, testMeasure);
     testClef = new Clef("gClef",testMeasure);
+    testNote = new Note("C","",0, testMeasure);
 }
 
 function draw() { //P5.js's draw runs 60 times per second
