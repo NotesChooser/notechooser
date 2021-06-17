@@ -28,3 +28,37 @@ fClefButton.addEventListener("click", () => {
 function updateScreen(evaluator){ //takes in evaluator and sets the evaluation text on the screen to that evaluator argument
     evaluation = evaluator
 }
+
+function button_handler(button_name){
+    console.log(button_name);
+    if (testMeasure.children.note.name == button_name) {
+        console.log("yo!");
+    } else {
+        console.log(`bruh! ${testMeasure.children.note.name}`);
+    }
+
+    testMeasure.randomizeNote(-6,7);
+}
+
+function addButtons(button_names) {
+    // return a list of buttons based on list of button titles
+    const button_div = document.getElementById("button-container");
+    let output = [];
+    for (let button_name of button_names) {
+        const new_button = document.createElement("div");
+        new_button.setAttribute("class", "button");
+        new_button.innerHTML = button_name;
+        new_button.id = button_name;
+        new_button.addEventListener("click", () => button_handler(button_name));
+        button_div.appendChild(new_button);
+        output.push(new_button);
+
+    }
+    return output;
+
+}
+
+addButtons(Note.valid_names);
+
+
+
