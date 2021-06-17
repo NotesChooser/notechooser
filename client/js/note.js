@@ -83,13 +83,20 @@ class Note {
     }
 
     getPos() {
-        //find the offset, in number of positions, based on clef
+        //find the get clef offset (in note-positions)
         this.clef_offset = 15;
         if (this.parent.children.clef.name == "gClef") { this.clef_offset = 27 };
 
-        //find on clef position based on number and clef offset
+        //find on-clef-position based on number and clef offset
         this.pos_number = Math.floor(this.number / Note.valid_accidentals.length); // remove accidental's effect on number; i.e. 'A' and 'Ab' have different numbers, same pos
         this.clef_position = this.pos_number - this.clef_offset;
+        this.distance_from_clef = 0;
+        if(Math.abs(this.clef_position) >= 6) {
+            this.distance_from_clef = this.clef_position - 5;
+            if(this.clef_position < 0){
+                this.distance_from_clef = this.clef_position + 5;
+            }
+        }
 
         //find pixel position based on the size of one staff-space
         this.pixel_offset = ((this.parent.pixelSize * -0.10) * this.clef_position);
@@ -101,11 +108,17 @@ class Note {
     show(smufl_dict, bravura) {
         // draws the note
 
+        //set up font, font size, and font color
+        textFont(bravura);
+        textSize(this.parent.pixelSize);
+        fill(this.color);
+
         console.assert(this.parent, { note: this, msg: "Note unable to show: note has no parent Measure." }); // note can only show when childed to measure
+
         // check if leger line is necessary
         //// TODO: ADD MULTIPLE LEGER LINES!
         let leger = ""
-        if (Math.abs(this.clef_position) >= 6) { leger = "(legerLine)" }
+        if (Math.abs(this.clef_position) >= 6) { leger = "(legerLine)" };
 
         //get smufl_points for note and accidental
         const smufl_text = encode(`            ${Note.accidental_names[this.accidental]}${leger}(noteQuarterUp)`, smufl_dict);
