@@ -42,35 +42,10 @@ class Note {
 
         expectation = expect(_octave, Note.valid_octaves, "number"); console.assert(expectation.passed,expectation.msg);
         this.octave = _octave;
-      
-        
-        /*
-        //typecheck & validitycheck for note name
-        _name = _name.toUpperCase();
-        let msg = `TypeError: '${_name}' is of type '${typeof(_name)}', expected 'string'.`
-        console.assert(typeof(_name) == "string",{name: _name, msg});
-        msg = `Unexpected note name: '${_name}' is not a valid note name.`
-        console.assert(Note.valid_names.includes(_name),{name: _name, msg});
-        this.name = _name;
 
-        // typecheck & validitycheck for accidental 
-        msg = `Unexpected note accidental: '${_accidental}' is of type '${typeof(_accidental)}', expected 'string'.`
-        console.assert(typeof(_accidental) == "string",{accidental: _accidental, msg});
-        msg =  `Unexpected note accidental: '${_accidental}' is not a valid note accidental.`;
-        console.assert((Note.valid_accidentals.includes(_accidental)),{accidental: _accidental, msg});
-        this.accidental = _accidental;
-        
-        // typecheck & validitycheck for octave 
-        msg = `Unexpected note octave: '${_octave}' is of type '${typeof(_octave)}', expected 'number'.`;
-        console.assert((typeof(_octave) == "number"),{octave: _octave, msg})
-        msg =  `Unexpected note octave: '${_octave}' is not a valid note octave.`;
-        console.assert((Note.valid_octaves.includes(_octave)),{octave: _octave, msg});
-        this.octave = _octave;
-
-        */
-        
-
-        this.color = {r: random(200), g: random(200), b: random(200)};
+        colorMode(HSB);
+        this.color = color(random(0, 255),random(100, 255), 100);
+        colorMode(RGB);
         //set up number, parent, and position
         this.has_parent = false;
         this.getNumber();
@@ -109,8 +84,8 @@ class Note {
 
     getPos(){ 
         //find the offset, in number of positions, based on clef
-        this.clef_offset = 15
-        if (this.parent.clef == "gClef") { this.clef_offset = 27 };
+        this.clef_offset = 15;
+        if (this.parent.children.clef.name == "gClef") { this.clef_offset = 27 };
 
         //find on clef position based on number and clef offset
         this.pos_number = Math.floor(this.number/Note.valid_accidentals.length); // remove accidental's effect on number; i.e. 'A' and 'Ab' have different numbers, same pos
@@ -138,7 +113,7 @@ class Note {
         //set up font, font size, and font color
         textFont(bravura);
         textSize(this.parent.pixelSize);
-        fill(this.color.r,this.color.g,this.color.b);
+        fill(this.color);
 
         // draws note and accidental using smufl_text
         text(smufl_text,this.pos.x,this.pos.y)
