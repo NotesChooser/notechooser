@@ -1,5 +1,9 @@
 function encode(plaintext, smufl_dict) {
-    //replaces all parenthesized smufl_names in 'plaintext' with matching smufl_points using 'smufl_dict'
+    //replaces all parenthesized smufl_names in plaintext with matching smufl_points using smufl_dict
+
+    //typecheck
+    console.assert(typeof plaintext == "string", {plaintext, msg: "plaintext input must be of type 'string'"});
+    console.assert(typeof smufl_dict == "object", {smfl_dict, msg: "smufl_dict must be an object"});
 
     const parenthesized = /\(\w*\)/gm; //regex to match parenthesized substrings
     const get_smufl = (smufl_name) => { // looks up smufl_name in smufl_dict, returns smufl_point
